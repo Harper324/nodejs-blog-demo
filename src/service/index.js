@@ -29,7 +29,7 @@ export const getAllPosts = () => {
   });
 };
 
-export const getPost = (id) => {
+export const getPost = id => {
   const queryPostSql = "SELECT * FROM posts WHERE id = ?";
   return new Promise((reslove, reject) => {
     connection.query(queryPostSql, [id], (err, result, fields) => {
@@ -42,3 +42,21 @@ export const getPost = (id) => {
     });
   });
 };
+
+export const getUserPosts = id => {
+  const queryUserPosts = "SELECT * FROM posts WHERE user_id =?";
+  return new Promise((reslove, reject) => {
+    connection.query(queryUserPosts, [id], (err, result, fields) => {
+      if (err) throw err;
+      if (result === undefined) {
+        reject(new Error("Can not find this user"));
+      } else {
+        reslove(JSON.stringify(result));
+      }
+    });
+  });
+};
+
+
+
+
