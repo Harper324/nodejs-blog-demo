@@ -16,9 +16,9 @@ connection.connect(function(err) {
 });
 
 export const getAllPosts = () => {
-  const queryAllPostsSql = "SELECT * FROM posts";
+  const queryAllPosts = "SELECT * FROM posts";
   return new Promise((reslove, reject) => {
-    connection.query(queryAllPostsSql, (err, result, fields) => {
+    connection.query(queryAllPosts, (err, result, fields) => {
       if (err) throw err;
       if (result === undefined) {
         reject(new Error("Can not find posts!"));
@@ -30,9 +30,9 @@ export const getAllPosts = () => {
 };
 
 export const getPost = id => {
-  const queryPostSql = "SELECT * FROM posts WHERE id = ?";
+  const queryPost = "SELECT * FROM posts WHERE id = ?";
   return new Promise((reslove, reject) => {
-    connection.query(queryPostSql, [id], (err, result, fields) => {
+    connection.query(queryPost, [id], (err, result, fields) => {
       if (err) throw err;
       if (result === undefined) {
         reject(new Error("Can not find this post"));
@@ -42,6 +42,21 @@ export const getPost = id => {
     });
   });
 };
+
+export const validateUser = (userName, password) => {
+    console.log(userName,password,'------------------------');
+    const getUser = "SELECT * FROM users WHERE user_name = ? AND password = ?";
+    return new Promise((reslove, reject) => {
+        connection.query(getUser,[userName, password], (err, result, fields) => {
+            if(err) throw err;
+            if(result === undefined) {
+                reject(new Error("User is not exist or Wrong password!"));
+            } else {
+                reslove(JSON.stringify(result));
+            }
+        })
+    })
+}
 
 export const getUserPosts = id => {
   const queryUserPosts = "SELECT * FROM posts WHERE user_id =?";
@@ -57,6 +72,10 @@ export const getUserPosts = id => {
   });
 };
 
+export const addPost = data => {
+  const insertPost =
+    "INSERT INTO posts (id, title, text, user_id, time) VALUES (NULL, ?, CURRENT_TIMESTAMP)";
+    const values = [
 
-
-
+    ]
+};

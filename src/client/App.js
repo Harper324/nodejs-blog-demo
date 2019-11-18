@@ -1,8 +1,10 @@
 import React from "react";
+import ReactDom from "react-dom";
 import Home from "./Home";
 import Text from "./Text";
 import Login from "./Login";
 import PostList from "./PostList";
+import NewPost from "./NewPost";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,12 +16,17 @@ class App extends React.Component {
       Home: Home,
       Text: Text,
       Login: Login,
-      PostList: PostList
+      PostList: PostList,
+      NewPost: NewPost
     };
-    console.log(this.props, "----------");
+    console.log(this.props, "App props ----------");
     const { page, data } = this.props;
     const MyComponent = Components[page];
-    return <MyComponent data={data} />;
+    return (
+      <div id={page}>
+        <MyComponent data={data} />
+      </div>
+    )
   }
 }
 

@@ -1,3 +1,4 @@
+
 const html = ({ body, title, initialState }) => `
   <!DOCTYPE html>
   <html>
@@ -5,8 +6,8 @@ const html = ({ body, title, initialState }) => `
     <script>window.__APP_INITIAL_STATE__ = ${initialState}</script>
       <title>${title}</title>
     </head>
-    <body style="margin:0">
-      <div id="app">${body}</div>
+    <body>
+      <div id="root">${body}</div>
     </body>
   </html>
 `;

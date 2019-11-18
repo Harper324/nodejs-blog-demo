@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/server/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/client/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -118,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"react-dom\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _NewPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewPost */ \"./src/client/NewPost.js\");\n\n\n\n\nclass Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      password: \"\"\n    };\n  }\n\n  render() {\n    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"form\", {\n      action: \"http://localhost:3000/login\",\n      method: \"POST\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"label\", {\n      htmlFor: \"userName\"\n    }, \"User Name\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n      name: \"userName\",\n      type: \"text\",\n      placeholder: \"user name\",\n      id: \"user\"\n    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"label\", {\n      htmlFor: \"password\"\n    }, \"Password\"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n      name: \"password\",\n      type: \"password\",\n      placeholder: \"password\",\n      id: \"password\"\n    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n      type: \"submit\"\n    })));\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Login);\n\n//# sourceURL=webpack:///./src/client/Login.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"react-dom\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _NewPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewPost */ \"./src/client/NewPost.js\");\n\n\n\n\nclass Login extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {\n  constructor(props) {\n    super(props);\n  }\n\n  render() {\n    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"form\", {\n      action: \"http://localhost:3000/user/1/posts\",\n      method: \"POST\"\n    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n      type: \"text\",\n      placeholder: \"user name\"\n    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n      type: \"password\",\n      placeholder: \"password\"\n    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n      type: \"submit\",\n      name: \"login\",\n      id: \"login\"\n    })));\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Login);\n\n//# sourceURL=webpack:///./src/client/Login.js?");
 
 /***/ }),
 
@@ -158,72 +158,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 
 /***/ }),
 
-/***/ "./src/client/html.js":
-/*!****************************!*\
-  !*** ./src/client/html.js ***!
-  \****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst html = ({\n  body,\n  title,\n  initialState\n}) => `\n  <!DOCTYPE html>\n  <html>\n    <head>\n    <script>window.__APP_INITIAL_STATE__ = ${initialState}</script>\n      <title>${title}</title>\n    </head>\n    <body>\n      <div id=\"root\">${body}</div>\n    </body>\n  </html>\n`;\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (html);\n\n//# sourceURL=webpack:///./src/client/html.js?");
-
-/***/ }),
-
-/***/ "./src/server/index.js":
+/***/ "./src/client/index.js":
 /*!*****************************!*\
-  !*** ./src/server/index.js ***!
+  !*** ./src/client/index.js ***!
   \*****************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _client_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../client/App */ \"./src/client/App.js\");\n/* harmony import */ var _client_html__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../client/html */ \"./src/client/html.js\");\n/* harmony import */ var _service_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../service/index */ \"./src/service/index.js\");\nconst express = __webpack_require__(/*! express */ \"express\");\n\nconst bodyParser = __webpack_require__(/*! body-parser */ \"body-parser\");\n\n\n\n\n\n\nconst port = 3000;\nconst server = express();\nconst middlewares = [// express.static(path.join(__dirname, 'public')),\nbodyParser.urlencoded()];\nserver.use(middlewares);\nserver.get(\"/\", (req, res) => {\n  Object(_service_index__WEBPACK_IMPORTED_MODULE_4__[\"getAllPosts\"])().then(result => {\n    const page = \"Home\";\n    const data = JSON.parse(result);\n    const initialState = {\n      page: page,\n      data: data\n    };\n    const body = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__[\"renderToString\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_client_App__WEBPACK_IMPORTED_MODULE_2__[\"default\"], initialState));\n    const title = \"Hello World from the server\";\n    res.send(Object(_client_html__WEBPACK_IMPORTED_MODULE_3__[\"default\"])({\n      body: body,\n      title: title,\n      initialState: initialState\n    }));\n  });\n});\nserver.get(\"/posts/:id\", (req, res) => {\n  Object(_service_index__WEBPACK_IMPORTED_MODULE_4__[\"getPost\"])(req.params.id).then(result => {\n    const initialState = {\n      page: \"Text\",\n      data: JSON.parse(result)\n    };\n    const body = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__[\"renderToString\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_client_App__WEBPACK_IMPORTED_MODULE_2__[\"default\"], initialState));\n    const title = \"The Text\";\n    res.send(Object(_client_html__WEBPACK_IMPORTED_MODULE_3__[\"default\"])({\n      body: body,\n      title: title,\n      initialState: initialState\n    }));\n  });\n});\nserver.get(\"/login\", (req, res) => {\n  const initialState = {\n    page: \"Login\"\n  };\n  const body = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__[\"renderToString\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_client_App__WEBPACK_IMPORTED_MODULE_2__[\"default\"], initialState));\n  const title = \"Login\";\n  res.send(Object(_client_html__WEBPACK_IMPORTED_MODULE_3__[\"default\"])({\n    body: body,\n    title: title,\n    initialState: initialState\n  }));\n});\nserver.post(\"/login\", (req, res) => {\n  const {\n    userName,\n    password\n  } = req.body;\n  Object(_service_index__WEBPACK_IMPORTED_MODULE_4__[\"validateUser\"])(userName, password).then(result => {\n    const data = JSON.parse(result);\n    const id = data[0].id; //   getUserPosts(id)\n    //     .then(result => {\n    //       const page = \"PostList\";\n    //       const data = JSON.parse(result);\n    //       const initialState = {\n    //         page: page,\n    //         data: data\n    //       };\n    //   const body = renderToString(<App {...initialState} />);\n    //   const title = \"PostList\";\n\n    res.redirect(`/user/${id}/posts`); //   res.send(\n    //     html({\n    //       body: body,\n    //       title: title,\n    //       initialState: initialState\n    //     })\n    //   );\n    // })\n    // .catch(err => console.log(err));\n  }).catch(err => console.log(err));\n});\nserver.get(\"/user/:id/posts\", (req, res) => {\n  Object(_service_index__WEBPACK_IMPORTED_MODULE_4__[\"getUserPosts\"])(req.params.id).then(result => {\n    const page = \"PostList\";\n    const data = JSON.parse(result);\n    const initialState = {\n      page: page,\n      data: data\n    };\n    const body = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__[\"renderToString\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_client_App__WEBPACK_IMPORTED_MODULE_2__[\"default\"], initialState));\n    const title = \"PostList\";\n    res.send(Object(_client_html__WEBPACK_IMPORTED_MODULE_3__[\"default\"])({\n      body: body,\n      title: title,\n      initialState: initialState\n    }));\n  });\n});\nserver.get(\"/user/:userId/posts/:id\", (req, res) => {\n  Object(_service_index__WEBPACK_IMPORTED_MODULE_4__[\"getPost\"])(req.params.id).then(result => {\n    const initialState = {\n      page: \"Text\",\n      data: JSON.parse(result)\n    };\n    const body = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__[\"renderToString\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_client_App__WEBPACK_IMPORTED_MODULE_2__[\"default\"], initialState));\n    const title = \"The Text\";\n    res.send(Object(_client_html__WEBPACK_IMPORTED_MODULE_3__[\"default\"])({\n      body: body,\n      title: title,\n      initialState: initialState\n    }));\n  });\n});\nserver.post(\"/user/:userId/writer\", (req, res) => {});\nserver.get(\"/user/:userId/writer\", (req, res) => {\n  const initialState = {\n    page: \"NewPost\"\n  };\n  const body = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__[\"renderToString\"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_client_App__WEBPACK_IMPORTED_MODULE_2__[\"default\"], initialState));\n  const title = \"Writer\";\n  res.send(Object(_client_html__WEBPACK_IMPORTED_MODULE_3__[\"default\"])({\n    body: body,\n    title: title,\n    initialState: initialState\n  }));\n});\nserver.listen(port);\nconsole.log(`server is listenning on http://localhost:${port}`);\n\n//# sourceURL=webpack:///./src/server/index.js?");
-
-/***/ }),
-
-/***/ "./src/service/index.js":
-/*!******************************!*\
-  !*** ./src/service/index.js ***!
-  \******************************/
-/*! exports provided: getAllPosts, getPost, validateUser, getUserPosts, addPost */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getAllPosts\", function() { return getAllPosts; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getPost\", function() { return getPost; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"validateUser\", function() { return validateUser; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getUserPosts\", function() { return getUserPosts; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"addPost\", function() { return addPost; });\nconst mysql = __webpack_require__(/*! mysql */ \"mysql\");\n\nconst connection = mysql.createConnection({\n  host: \"localhost\",\n  user: \"root\",\n  password: \"test\",\n  database: \"my_blogs\"\n});\nconnection.connect(function (err) {\n  if (err) {\n    console.log(err);\n  } else {\n    console.log(\"Connected!\");\n  }\n});\nconst getAllPosts = () => {\n  const queryAllPosts = \"SELECT * FROM posts\";\n  return new Promise((reslove, reject) => {\n    connection.query(queryAllPosts, (err, result, fields) => {\n      if (err) throw err;\n\n      if (result === undefined) {\n        reject(new Error(\"Can not find posts!\"));\n      } else {\n        reslove(JSON.stringify(result));\n      }\n    });\n  });\n};\nconst getPost = id => {\n  const queryPost = \"SELECT * FROM posts WHERE id = ?\";\n  return new Promise((reslove, reject) => {\n    connection.query(queryPost, [id], (err, result, fields) => {\n      if (err) throw err;\n\n      if (result === undefined) {\n        reject(new Error(\"Can not find this post\"));\n      } else {\n        reslove(JSON.stringify(result));\n      }\n    });\n  });\n};\nconst validateUser = (userName, password) => {\n  console.log(userName, password, '------------------------');\n  const getUser = \"SELECT * FROM users WHERE user_name = ? AND password = ?\";\n  return new Promise((reslove, reject) => {\n    connection.query(getUser, [userName, password], (err, result, fields) => {\n      if (err) throw err;\n\n      if (result === undefined) {\n        reject(new Error(\"User is not exist or Wrong password!\"));\n      } else {\n        reslove(JSON.stringify(result));\n      }\n    });\n  });\n};\nconst getUserPosts = id => {\n  const queryUserPosts = \"SELECT * FROM posts WHERE user_id =?\";\n  return new Promise((reslove, reject) => {\n    connection.query(queryUserPosts, [id], (err, result, fields) => {\n      if (err) throw err;\n\n      if (result === undefined) {\n        reject(new Error(\"Can not find this user\"));\n      } else {\n        reslove(JSON.stringify(result));\n      }\n    });\n  });\n};\nconst addPost = data => {\n  const insertPost = \"INSERT INTO posts (id, title, text, user_id, time) VALUES (NULL, ?, CURRENT_TIMESTAMP)\";\n  const values = [];\n};\n\n//# sourceURL=webpack:///./src/service/index.js?");
-
-/***/ }),
-
-/***/ "body-parser":
-/*!******************************!*\
-  !*** external "body-parser" ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"body-parser\");\n\n//# sourceURL=webpack:///external_%22body-parser%22?");
-
-/***/ }),
-
-/***/ "express":
-/*!**************************!*\
-  !*** external "express" ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
-
-/***/ }),
-
-/***/ "mysql":
-/*!************************!*\
-  !*** external "mysql" ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"mysql\");\n\n//# sourceURL=webpack:///external_%22mysql%22?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"react-dom\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ \"./src/client/App.js\");\n/* harmony import */ var _NewPost__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NewPost */ \"./src/client/NewPost.js\");\n\n\n\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_2__[\"default\"], window.__APP_INITIAL_STATE__), document.getElementById(\"root\"));\n\n//# sourceURL=webpack:///./src/client/index.js?");
 
 /***/ }),
 
@@ -246,17 +189,6 @@ eval("module.exports = require(\"react\");\n\n//# sourceURL=webpack:///external_
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"react-dom\");\n\n//# sourceURL=webpack:///external_%22react-dom%22?");
-
-/***/ }),
-
-/***/ "react-dom/server":
-/*!***********************************!*\
-  !*** external "react-dom/server" ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"react-dom/server\");\n\n//# sourceURL=webpack:///external_%22react-dom/server%22?");
 
 /***/ })
 

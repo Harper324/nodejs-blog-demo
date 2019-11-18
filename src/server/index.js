@@ -1,12 +1,23 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 import React from "react";
 import { renderToString } from "react-dom/server";
 import App from "../client/App";
 import html from "../client/html";
-import { getAllPosts, getPost, getUserPosts } from "../service/index";
+import {
+  getAllPosts,
+  getPost,
+  getUserPosts,
+  validateUser
+} from "../service/index";
 
 const port = 3000;
 const server = express();
+const middlewares = [
+  // express.static(path.join(__dirname, 'public')),
+  bodyParser.urlencoded()
+];
+server.use(middlewares);
 
 server.get("/", (req, res) => {
   getAllPosts().then(result => {
@@ -61,8 +72,18 @@ server.get("/login", (req, res) => {
   );
 });
 
-server.get("/user/:id", (req, res) => {
-  console.log(req.params.id, "idididididiididi");
+server.post("/login", (req, res) => {
+  const { userName, password } = req.body;
+  validateUser(userName, password)
+    .then(result => {
+      const data = JSON.parse(result);
+      const id = data[0].id;
+          res.redirect(`/user/${id}/posts`);
+    })
+    .catch(err => console.log(err));
+});
+
+server.get("/user/:id/posts", (req, res) => {
   getUserPosts(req.params.id).then(result => {
     const page = "PostList";
     const data = JSON.parse(result);
@@ -82,7 +103,7 @@ server.get("/user/:id", (req, res) => {
   });
 });
 
-server.get("/user/:userId/:id", (req, res) => {
+server.get("/user/:userId/posts/:id", (req, res) => {
   getPost(req.params.id).then(result => {
     const initialState = {
       page: "Text",
@@ -99,5 +120,23 @@ server.get("/user/:userId/:id", (req, res) => {
     );
   });
 });
+
+server.post("/user/:userId/writer", (req, res) => {});
+
+server.get("/user/:userId/writer", (req, res) => {
+  const initialState = {
+    page: "NewPost"
+  };
+  const body = renderToString(<App {...initialState} />);
+  const title = "Writer";
+  res.send(
+    html({
+      body: body,
+      title: title,
+      initialState: initialState
+    })
+  );
+});
+
 server.listen(port);
 console.log(`server is listenning on http://localhost:${port}`);
