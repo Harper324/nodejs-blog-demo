@@ -9,7 +9,7 @@ class NewPost extends React.Component {
   render() {
     return (
       <div>
-        <form action="">
+        <form action="http://localhost:3000/user/1/writer" method="POST">
           <input
             type="text"
             name="newTitle"
@@ -24,9 +24,10 @@ class NewPost extends React.Component {
             placeholder="Please write your text here"
           ></textarea>
           <input
-            type="button"
+            type="submit"
             name="addPost"
             id="addPost"
+            value="Add"
           />
         </form>
       </div>

@@ -44,19 +44,19 @@ export const getPost = id => {
 };
 
 export const validateUser = (userName, password) => {
-    console.log(userName,password,'------------------------');
-    const getUser = "SELECT * FROM users WHERE user_name = ? AND password = ?";
-    return new Promise((reslove, reject) => {
-        connection.query(getUser,[userName, password], (err, result, fields) => {
-            if(err) throw err;
-            if(result === undefined) {
-                reject(new Error("User is not exist or Wrong password!"));
-            } else {
-                reslove(JSON.stringify(result));
-            }
-        })
-    })
-}
+  console.log(userName, password, "------------------------");
+  const getUser = "SELECT * FROM users WHERE user_name = ? AND password = ?";
+  return new Promise((reslove, reject) => {
+    connection.query(getUser, [userName, password], (err, result, fields) => {
+      if (err) throw err;
+      if (result === undefined) {
+        reject(new Error("User is not exist or Wrong password!"));
+      } else {
+        reslove(JSON.stringify(result));
+      }
+    });
+  });
+};
 
 export const getUserPosts = id => {
   const queryUserPosts = "SELECT * FROM posts WHERE user_id =?";
@@ -72,10 +72,15 @@ export const getUserPosts = id => {
   });
 };
 
-export const addPost = data => {
+export const addPost = (newTitle, newText, userId) => {
   const insertPost =
-    "INSERT INTO posts (id, title, text, user_id, time) VALUES (NULL, ?, CURRENT_TIMESTAMP)";
-    const values = [
-
-    ]
+    "INSERT INTO posts (id, title, text, user_id, time) VALUES (NULL, ?, ?, ?, CURRENT_TIMESTAMP)";
+  connection.query(
+    insertPost,
+    [newTitle, newText, userId],
+    (err, result, fields) => {
+      if (err) throw err;
+      return result;
+    }
+  );
 };

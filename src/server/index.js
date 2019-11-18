@@ -8,7 +8,8 @@ import {
   getAllPosts,
   getPost,
   getUserPosts,
-  validateUser
+  validateUser,
+  addPost
 } from "../service/index";
 
 const port = 3000;
@@ -78,7 +79,7 @@ server.post("/login", (req, res) => {
     .then(result => {
       const data = JSON.parse(result);
       const id = data[0].id;
-          res.redirect(`/user/${id}/posts`);
+      res.redirect(`/user/${id}/posts`);
     })
     .catch(err => console.log(err));
 });
@@ -121,7 +122,12 @@ server.get("/user/:userId/posts/:id", (req, res) => {
   });
 });
 
-server.post("/user/:userId/writer", (req, res) => {});
+server.post("/user/:userId/writer", (req, res) => {
+  const { newTitle, newText } = req.body;
+  const userId = req.params.userId;
+  addPost(newTitle, newText, userId);
+  res.redirect(`/user/${userId}/posts`);
+});
 
 server.get("/user/:userId/writer", (req, res) => {
   const initialState = {
