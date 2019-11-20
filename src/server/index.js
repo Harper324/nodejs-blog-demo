@@ -11,7 +11,8 @@ import {
   getPost,
   getUserPosts,
   validateUser,
-  addPost
+  addPost,
+  addUser
 } from "../service/index";
 
 const port = 3000;
@@ -28,7 +29,6 @@ server.get("/", (req, res) => {
       data: data
     };
     const body = renderToString(<App {...initialState} />);
-    // const body = renderToNodeStream(<App {...initialState} />);
     const title = "Hello World from the server";
     res.send(
       html({
@@ -41,11 +41,7 @@ server.get("/", (req, res) => {
 });
 
 server.get("/posts/:id", (req, res) => {
-  // console.log(req.headers,'----------------header-----------------');
-  console.log(
-    req.headers.token,
-    "----------------header token-----------------"
-  );
+
   getPost(req.params.id).then(result => {
     const initialState = {
       page: "Text",
@@ -69,10 +65,9 @@ server.get("/login", (req, res) => {
   };
   const body = renderToString(<App {...initialState} />);
   const title = "Login";
-  const payload = { userName: "aaa" };
-  const privateKey = "caoxi";
-  var token = jwt.sign(payload, privateKey);
-  res.setHeader("token", token);
+  const token = req.cookies.token;
+  console.log(token,'token------------');
+
   res.send(
     html({
       body: body,
@@ -83,21 +78,18 @@ server.get("/login", (req, res) => {
 });
 
 server.post("/login", (req, res) => {
+    console.log(req.cookies.token,'token from last cycle-----------');
   const { userName, password } = req.body;
-  console.log(userName, password, "login from fronted---------");
   validateUser(userName, password)
     .then(result => {
       const data = JSON.parse(result);
-      console.log(data, "user from data----------");
       const id = data[0].id;
       const payload = { userName: userName };
-      const privateKey = "caoxi";
+      const privateKey = "caoxi" + id;
       const token = jwt.sign(payload, privateKey);
-      console.log(token, "token from backend----------");
+      console.log(token,'new token----------');
       res.cookie("token", token, { httpOnly: true });
-      //   res.setHeader("token",token);
       res.redirect(`/user/${id}/posts`);
-      // res.send(data);
     })
     .catch(err => {
       console.log(err);
@@ -105,21 +97,48 @@ server.post("/login", (req, res) => {
     });
 });
 
+server.get("/register", (req, res) => {
+  const page = "Register";
+  const initialState = {
+    page: page
+  };
+  const body = renderToString(<App {...initialState} />);
+  res.send(
+    html({
+      body: body,
+      title: page,
+      initialState: initialState
+    })
+  );
+});
+
+server.post("/register", (req, res) => {
+  const { userName, password } = req.body;
+  addUser(userName, password).then(result => {
+    const userId = JSON.parse(result).insertId;
+    const privateKey = "caoxi" + userId;
+    const payload = { userName: userName };
+    const token = jwt.sign(payload, privateKey);
+    res.cookie("token", token, { httpOnly: true });
+    res.redirect("/");
+  });
+});
+
 server.get("/user/:id/posts", (req, res) => {
-  console.log(req.headers, "-----------header---------------");
   const token = req.cookies.token;
-  console.log(token, "-----------cookies---------------");
-  const privateKey = "caoxi";
+  const userId = req.params.id;
+  const privateKey = "caoxi" + userId;
   jwt.verify(token, privateKey);
   if (req.cookies === undefined) {
     throw new Error("Do not login");
   }
-  getUserPosts(req.params.id).then(result => {
+  getUserPosts(userId).then(result => {
     const page = "PostList";
     const data = JSON.parse(result);
     const initialState = {
       page: page,
-      data: data
+      data: data,
+      userId: userId
     };
     const body = renderToString(<App {...initialState} />);
     const title = "PostList";
@@ -135,7 +154,8 @@ server.get("/user/:id/posts", (req, res) => {
 
 server.get("/user/:userId/posts/:id", (req, res) => {
   const token = req.cookies.token;
-  const privateKey = "caoxi";
+  const userId = req.params.userId;
+  const privateKey = "caoxi" + userId;
   if (token === undefined) {
     res.redirect("/login");
   }
@@ -159,22 +179,29 @@ server.get("/user/:userId/posts/:id", (req, res) => {
 
 server.post("/user/:userId/writer", (req, res) => {
   const token = req.cookies.token;
-  const privateKey = "caoxi";
+  const userId = req.params.userId;
+  const privateKey = "caoxi" + userId;
   if (token === undefined) {
     res.redirect("/login");
   }
   jwt.verify(token, privateKey);
   const { newTitle, newText } = req.body;
-  const userId = req.params.userId;
-  console.log(userId,'userId-------------');
+  console.log(userId, "userId-------------");
   addPost(newTitle, newText, userId);
   res.redirect(`/user/${userId}/posts`);
 });
 
 server.get("/user/:userId/writer", (req, res) => {
+  const token = req.cookies.token;
+  const userId = req.params.userId;
+  const privateKey = "caoxi" + userId;
+  if (token === undefined) {
+    res.redirect("/login");
+  }
+  jwt.verify(token, privateKey);
   const initialState = {
     page: "NewPost",
-    data: req.params.userId
+    data: userId
   };
   const body = renderToString(<App {...initialState} />);
   const title = "Writer";
@@ -185,6 +212,18 @@ server.get("/user/:userId/writer", (req, res) => {
       initialState: initialState
     })
   );
+});
+
+server.get("/user/:userId/logout", (req, res) => {
+  const token = req.cookies.token;
+  const userId = req.params.userId;
+  const privateKey = "caoxi" + userId;
+  if (token === undefined) {
+    res.redirect("/login");
+  }
+//   jwt.verify(token, privateKey);
+  res.clearCookie("token");
+  res.redirect("/");
 });
 
 server.listen(port);

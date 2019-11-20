@@ -6,8 +6,7 @@ class PostList extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
-    const userId = data[0].user_id;
+    const { data,userId } = this.props;
     const postList = data.map(post => {
       return (
         <li key={post.id}>
@@ -22,6 +21,7 @@ class PostList extends React.Component {
       <div>
         <header>
           <a href={`http://localhost:3000/user/${userId}/writer`}>Write Blog</a>
+          <a href={`http://localhost:3000/user/${userId}/logout`}>Logout</a>
         </header>
         <h2>My Posts</h2>
         <ul>{postList}</ul>

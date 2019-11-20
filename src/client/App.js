@@ -5,14 +5,11 @@ import Text from "./Text";
 import Login from "./Login";
 import PostList from "./PostList";
 import NewPost from "./NewPost";
+import Register from "./Register";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  handleClick() {
-      console.log('hhhhhhh');
   }
 
   render() {
@@ -21,20 +18,18 @@ class App extends React.Component {
       Text: Text,
       Login: Login,
       PostList: PostList,
-      NewPost: NewPost
+      NewPost: NewPost,
+      Register: Register
     };
-    console.log(this.props, "App props ----------");
 
     const { page, data } = this.props;
     const MyComponent = Components[page];
     return (
       <div id={page}>
         <MyComponent data={data} />
-        <button onClick={this.handleClick.bind(this)}>click</button>
       </div>
-    )
+    );
   }
 }
-
 
 export default App;

@@ -85,3 +85,17 @@ export const addPost = (newTitle, newText, userId) => {
     }
   );
 };
+
+export const addUser = (userName, password) => {
+    const insertUser = "INSERT INTO users (id, user_name, password) VALUES (NULL, ?, ?)";
+    return new Promise ((reslove,reject)=>{
+
+        connection.query(
+            insertUser,[userName,password],(err, result, fields) =>{
+                if(err) throw err;
+                reslove(JSON.stringify(result));
+    
+            }
+        )
+    })
+}

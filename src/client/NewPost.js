@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDom from "react-dom";
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -8,7 +7,6 @@ class NewPost extends React.Component {
 
   render() {
       const userId = this.props.data;
-      console.log(userId,'datadatadata');
     return (
       <div>
         <form action={`http://localhost:3000/user/${userId}/writer`} method="POST">

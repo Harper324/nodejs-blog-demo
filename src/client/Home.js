@@ -7,7 +7,6 @@ class Home extends React.Component {
 
   render() {
     const { data } = this.props;
-    console.log('yesyesyes-------------');
     const postsList = data.map(post => {
       return (
         <li key={post.id}>
@@ -19,7 +18,7 @@ class Home extends React.Component {
       <div>
         <header>
             <a href="http://localhost:3000/login">Login</a>
-            <button className="registration">Registration</button>
+            <a href="http://localhost:3000/register">Register</a>
         </header>
         <main>
           <h1>ALL POSTS</h1>
