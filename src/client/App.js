@@ -11,6 +11,10 @@ class App extends React.Component {
     super(props);
   }
 
+  handleClick() {
+      console.log('hhhhhhh');
+  }
+
   render() {
     const Components = {
       Home: Home,
@@ -20,14 +24,17 @@ class App extends React.Component {
       NewPost: NewPost
     };
     console.log(this.props, "App props ----------");
+
     const { page, data } = this.props;
     const MyComponent = Components[page];
     return (
       <div id={page}>
         <MyComponent data={data} />
+        <button onClick={this.handleClick.bind(this)}>click</button>
       </div>
     )
   }
 }
+
 
 export default App;

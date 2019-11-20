@@ -7,9 +7,11 @@ class NewPost extends React.Component {
   }
 
   render() {
+      const userId = this.props.data;
+      console.log(userId,'datadatadata');
     return (
       <div>
-        <form action="http://localhost:3000/user/1/writer" method="POST">
+        <form action={`http://localhost:3000/user/${userId}/writer`} method="POST">
           <input
             type="text"
             name="newTitle"

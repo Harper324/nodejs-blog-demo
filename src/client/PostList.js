@@ -7,10 +7,11 @@ class PostList extends React.Component {
 
   render() {
     const { data } = this.props;
+    const userId = data[0].user_id;
     const postList = data.map(post => {
       return (
         <li key={post.id}>
-          <a href={"http://localhost:3000/user/1/posts/" + post.id}>
+          <a href={`http://localhost:3000/user/${userId}/posts/` + post.id}>
             {post.title}
           </a>
         </li>
@@ -20,7 +21,7 @@ class PostList extends React.Component {
     return (
       <div>
         <header>
-          <a href="http://localhost:3000/user/1/writer">Write Blog</a>
+          <a href={`http://localhost:3000/user/${userId}/writer`}>Write Blog</a>
         </header>
         <h2>My Posts</h2>
         <ul>{postList}</ul>

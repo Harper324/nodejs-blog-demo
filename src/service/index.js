@@ -44,12 +44,13 @@ export const getPost = id => {
 };
 
 export const validateUser = (userName, password) => {
-  console.log(userName, password, "------------------------");
   const getUser = "SELECT * FROM users WHERE user_name = ? AND password = ?";
   return new Promise((reslove, reject) => {
     connection.query(getUser, [userName, password], (err, result, fields) => {
       if (err) throw err;
-      if (result === undefined) {
+      console.log(userName,password,"login-----------");
+      console.log(result,'result from db--------------');
+      if (result.length === 0) {
         reject(new Error("User is not exist or Wrong password!"));
       } else {
         reslove(JSON.stringify(result));

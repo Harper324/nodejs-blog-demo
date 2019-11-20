@@ -7,6 +7,7 @@ class Home extends React.Component {
 
   render() {
     const { data } = this.props;
+    console.log('yesyesyes-------------');
     const postsList = data.map(post => {
       return (
         <li key={post.id}>
